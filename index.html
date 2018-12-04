@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ch" dir="ltr">
-<!-- 123 -->
+
 <head>
   <meta charset="utf-8">
 
@@ -16,6 +16,9 @@
   <!--getmdl-select-->
   <link rel="stylesheet" href="mdl/getmdl-select-master/getmdl-select.min.css">
   <script defer src="mdl/getmdl-select-master/getmdl-select.min.js"></script>
+
+  <!-- import changeCity -->
+  <script type="text/javascript" src="changeCity.js"></script>
 
   <style>
     @import url('style.css');
@@ -104,7 +107,7 @@
           </div>
           <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
             <!-- Table -->
-            <table class="mdl-data-table mdl-js-data-table mdl-data-table--unselectable mdl-shadow--2dp fullwidth">
+            <table class="mdl-data-table mdl-js-data-table mdl-data-table--unselectable mdl-shadow--2dp fullwidth" id="table1">
               <thead>
                 <tr>
                   <th class="mdl-data-table__cell--non-numeric">Material</th>
@@ -113,18 +116,18 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
+                <tr onclick="changeCity(this)" id='taipei'>
+                  <td class="mdl-data-table__cell--non-numeric">Taipei</td>
                   <td>25</td>
                   <td>$2.90</td>
                 </tr>
-                <tr>
-                  <td class="mdl-data-table__cell--non-numeric">Plywood (Birch)</td>
+                <tr onclick="changeCity(this)" id='miaoli'>
+                  <td class="mdl-data-table__cell--non-numeric">Miaoli</td>
                   <td>50</td>
                   <td>$1.25</td>
                 </tr>
-                <tr>
-                  <td class="mdl-data-table__cell--non-numeric">Laminate (Gold on Blue)</td>
+                <tr onclick="changeCity(this)" id='ponghu'>
+                  <td class="mdl-data-table__cell--non-numeric">Ponghu</td>
                   <td>10</td>
                   <td>$2.35</td>
                 </tr>
@@ -150,10 +153,12 @@
         }),
       ],
       view: new ol.View({
-        center: ol.proj.fromLonLat([121, 23.8]),
+        center: ol.proj.fromLonLat([121, 23.65]),
         zoom: 7.5
       })
     });
+    //----------------------------------
+    var view = map.getView();
   </script>
 
   <script>
