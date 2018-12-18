@@ -12,7 +12,10 @@ var map = new ol.Map({
   layers: [
 
     new ol.layer.Tile({
-      source: new ol.source.OSM()
+      source: new ol.source.XYZ({
+        crossOrigin: 'anonymous',
+        url: 'https://mt{0-3}.google.com/vt/lyrs=r&x={x}&y={y}&z={z}',
+      }),
     }),
 
     new ol.layer.Vector({
@@ -29,6 +32,10 @@ var map = new ol.Map({
       }),
     })
   ],
+  // stop zooming with scroll
+  interactions: ol.interaction.defaults({
+    mouseWheelZoom: false
+  }),
 
   view: view
 });
