@@ -26,12 +26,15 @@
     #map {
       margin-top: 1vh;
       margin-left: 0.45vw;
-      height: 89vh;
+      height: 105% ;
       width: 100%;
     }
     #table1 {
       width: 96%;
       align:center;
+    }
+    #section1-1{
+      height: 89vh;
     }
     #section1-2 {
       width:90%;
@@ -44,8 +47,8 @@
 
 <body>
   <!-- Always shows a header, even in smaller screens. -->
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
+  <div class="mdl-layout mdl-js-layout">
+    <header class="mdl-layout__header mdl-layout__header--scroll">
       <div class="mdl-layout__header-row">
         <!-- Title -->
         <span class="mdl-layout-title">校舍安全檢核系統</span>
@@ -60,7 +63,7 @@
         <div class="ui grid">
 
           <!-- map -->
-          <div class="eight wide column">
+          <div class="eight wide column" id='section1-1'>
             <div id="map"></div>
           </div>
 
