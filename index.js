@@ -1,6 +1,6 @@
 //setting
 
-var view =  new ol.View({
+var view = new ol.View({
   center: ol.proj.fromLonLat([121, 23.5]),
   zoom: 7.5
 })
@@ -39,3 +39,13 @@ var map = new ol.Map({
 
   view: view
 });
+
+//---------------------------------------------------------
+
+$(function() {
+  $("#test").click(function() {
+    $('#dialog1').modal('show');
+  })
+})
+
+//---------------------------------------------------------
