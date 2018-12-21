@@ -37,7 +37,7 @@ function returnZoom() {
 
   view.animate({
     zoom: 7.5,
-    duration: 700
+    duration: 900
   });
 
 }

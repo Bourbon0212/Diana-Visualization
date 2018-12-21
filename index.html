@@ -8,6 +8,10 @@
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
+  <!--getmdl-select-->
+  <link rel="stylesheet" href="node_modules/getmdl-select/getmdl-select.min.css">
+  <script defer src="node_modules/getmdl-select/getmdl-select.min.js"></script>
+
   <!-- import semantic -->
   <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
@@ -17,9 +21,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   <!-- import ol -->
-  <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
-  <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
-  <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+  <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" type="text/css">
   <script src="https://openlayers.org/en/v4.6.5/build/ol.js"></script>
 
   <style>
@@ -70,8 +72,9 @@
           <div class="eight wide column" id='section1-2'>
             <!-- dropdown -->
             <h5 align="left" style="font-family:微軟正黑體">
+
               <!-- Simple Select -->
-              <div class="mdl-textfield mdl-js-textfield getmdl-select">
+              <!-- <div class="mdl-textfield mdl-js-textfield getmdl-select">
                 <input type="text" value="" class="mdl-textfield__input" id="sample1" readonly>
                 <input type="hidden" value="" name="sample1">
                 <label for="sample1" class="mdl-textfield__label">請選擇事件</label>
@@ -80,7 +83,20 @@
                   <li class="mdl-menu__item" data-val="123">123</li>
                   <li class="mdl-menu__item" data-val="456">456</li>
                 </ul>
+              </div> -->
+
+              <!-- Simple Select -->
+              <div class="mdl-textfield mdl-js-textfield getmdl-select">
+                  <input type="text" value="" class="mdl-textfield__input" id="sample1" readonly>
+                  <input type="hidden" value="" name="sample1">
+                  <label for="sample1" class="mdl-textfield__label">請選擇事件</label>
+                  <ul for="sample1" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                      <li class="mdl-menu__item" data-val="DEU">921</li>
+                      <li class="mdl-menu__item" data-val="BLR">Belarus</li>
+                      <li class="mdl-menu__item" data-val="RUS">Russia</li>
+                  </ul>
               </div>
+
 
               <button id='loadBtn' onclick="loadJSON()">LOADJSON</button>
             </h5>
