@@ -1,35 +1,45 @@
 
-var json = '{"TPE":{"name":"John", "age":30, "city":"New York"}, "Newtaipei":{"name":"Amy", "age":0, "city":"Yeah"},  "keelung":{"name":"123", "age":0, "city":"Yeah"}, "41ung":{"name":"123", "age":0, "city":"Yeah"}, "456":{"name":"123", "age":0, "city":"Yeah"}, "789":{"name":"123", "age":0, "city":"Yeah"}, "few":{"name":"123", "age":0, "city":"Yeah"}, "wed":{"name":"123", "age":0, "city":"Yeah"}, "49v":{"name":"123", "age":0, "city":"Yeah"}, "wwq":{"name":"123", "age":0, "city":"Yeah"}, "v4t":{"name":"123", "age":0, "city":"Yeah"}, "qh8":{"name":"123", "age":0, "city":"Yeah"}, "rej":{"name":"123", "age":0, "city":"Yeah"}, "38g":{"name":"123", "age":0, "city":"Yeah"}, "18d":{"name":"123", "age":0, "city":"Yeah"}, "seb":{"name":"123", "age":0, "city":"Yeah"}, "yqh":{"name":"123", "age":0, "city":"Yeah"}, "hyk":{"name":"123", "age":0, "city":"Yeah"}, "rej":{"name":"123", "age":0, "city":"Yeah"}, "qwey":{"name":"123", "age":0, "city":"Yeah"}, "qwhsx":{"name":"123", "age":0, "city":"Yeah"}, "r4h":{"name":"123", "age":0, "city":"Yeah"}, "48grw":{"name":"123", "age":0, "city":"Yeah"}, "vewqh8":{"name":"123", "age":0, "city":"Yeah"}, "gfdsuj6":{"name":"123", "age":0, "city":"Yeah"}, "qwt":{"name":"123", "age":0, "city":"Yeah"}}';
 var x = 0;
 
-
-
-function loadJSON() {
+function loadJSON(items) {
   //console.log(json);
-  var items = JSON.parse(json);
+  //var items = JSON.parse(json);
   $("#table1 tbody tr").remove();
   //-------------------------------------
-
-
+  // insert into table1
 
 
   for(i in items){
     //console.log(items[i]['name']);
     var one, two, three;
-
+    //console.log(i);
     one = items[i]['name']
-    two = items[i]['age']
-    three = items[i]['city']
+    two = items[i]['phone']
 
-    var tr=$('#table1').append($('<tr />').append($('<td />').addClass('mdl-data-table__cell--non-numeric').html(one))
-            .append($('<td />').html(two))
-            .append($('<td />').html(three))
-            .append($('<td />').append($('<button />').attr('id','Btn'+ x).addClass('tiny ui button').html('Good'))));
+    if(items[i]['YN'] == 0){
+      three = '未填答'
+    }else{
+      three = '已填答'
+    }
 
-    x = x+1;
+    if(three == '未填答'){
+      var tr=$('#table1').append($('<tr />').addClass('red').append($('<td />').addClass('mdl-data-table__cell--non-numeric').html(i))
+              .append($('<td />').html(one))
+              .append($('<td />').html(two))
+              .append($('<td />').html(three))
+              .append($('<td />').append($('<button />').attr('onclick','show()').attr('id','Btn'+ x).addClass('tiny ui button').html('View'))));
 
+      x = x+1;
+    }
+    else{
+      var tr=$('#table1').append($('<tr />').append($('<td />').addClass('mdl-data-table__cell--non-numeric').html(i))
+              .append($('<td />').html(one))
+              .append($('<td />').html(two))
+              .append($('<td />').html(three))
+              .append($('<td />').append($('<button />').attr('onclick','show()').attr('id','Btn'+ x).addClass('tiny ui button').html('View'))));
 
+      x = x+1;
+    }
   }
-
-  console.log($('#Btn5'))
+  //console.log(x);
 }

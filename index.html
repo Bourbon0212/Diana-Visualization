@@ -30,25 +30,8 @@
   <script src="https://openlayers.org/en/v4.6.5/build/ol.js"></script>
 
   <style>
-    #map {
-      margin-top: 1vh;
-      margin-left: 0.45vw;
-      height: 105% ;
-      width: 100%;
-    }
-    #table1 {
-      width: 96%;
-      align:center;
-    }
-    #section1-1{
-      height: 89vh;
-      position:fixed;
-    }
-    #selectbar{
-       align:"left" ;
-       font-family: '微軟正黑體';
-    }
-</style>
+    @import 'style.css';
+  </style>
 
 
 </head>
@@ -60,6 +43,8 @@
       <div class="mdl-layout__header-row">
         <!-- Title -->
         <span class="mdl-layout-title">校舍安全檢核系統</span>
+        <div class="mdl-layout-spacer"></div>
+        <span class="mdl-layout-title" id='network'>未連接至網路</span>
       </div>
     </header>
     <main class="mdl-layout__content">
@@ -77,7 +62,7 @@
           <!--------------------------------------------------->
           <div class="eight wide column" id='section1-2'>
             <!-- dropdown -->
-            <h5 id ='selectbar'>
+            <h5 id='selectbar'>
               <!-- Simple Select -->
               <div class="mdl-textfield mdl-js-textfield getmdl-select">
                 <input type="text" value="" class="mdl-textfield__input" id="sample1" readonly>
@@ -89,25 +74,25 @@
                   <li class="mdl-menu__item" data-val="RUS">Russia</li>
                 </ul>
               </div>
-              <button id='loadBtn' onclick="loadJSON()">LOADJSON</button>
             </h5>
 
             <!-- Table -->
             <table class="mdl-data-table mdl-js-data-table mdl-data-table--unselectable mdl-shadow--2dp" id='table1'>
               <thead>
                 <tr>
-                  <th class="mdl-data-table__cell--non-numeric">Material</th>
-                  <th>Quantity</th>
-                  <th>Unit price</th>
-                  <th>Btn</th>
+                  <th class="mdl-data-table__cell--non-numeric">學校</th>
+                  <th>負責人</th>
+                  <th>電話</th>
+                  <th>填答與否</th>
+                  <th>詳細填答情形</th>
                 </tr>
               </thead>
               <tbody>
-                <tr id='test'>
+                <!-- <tr>
                   <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
                   <td>25</td>
                   <td>$2.90</td>
-                  <td><button class="ui tiny button">One</button></td>
+                  <td><button class="ui tiny button" id='test'>One</button></td>
                 </tr>
                 <tr>
                   <td class="mdl-data-table__cell--non-numeric">Plywood (Birch)</td>
@@ -120,7 +105,7 @@
                   <td>10</td>
                   <td>$2.35</td>
                   <td><button class="ui tiny button">One</button></td>
-                </tr>
+                </tr> -->
               </tbody>
             </table>
 
@@ -156,7 +141,9 @@
     </main>
   </div>
 
-        <!----------------------------------------->
+  <!----------------------------------------->
+
+  <!-- 跳出來的Table -->
   <div class='modal fade' id='dialog1' tabindex='-1' role='dialog' aria-labelledby='dialog1-title' aria-hidden='true'>
     <div class='modal-dialog modal-dialog-centered' role='document'>
       <div class='modal-content'>
@@ -191,16 +178,18 @@
               </tr>
             </tbody>
           </table>
+        </div>
       </div>
     </div>
-  </div>
   </div>
 
   <!----------------------------------------->
 
   <script src='index.js'></script>
-  <script src='map_function.js'></script>
   <script src='loadJSON.js'></script>
+  <script src='map_function.js'></script>
+  <script src='request.js'></script>
+
 </body>
 
 </html>

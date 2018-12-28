@@ -1,75 +1,30 @@
-/* background */
-.demo-layout-transparent {
-  background: url('./assets/background.jpg') center / cover;
-}
-.demo-layout-transparent .mdl-layout__header,
-.demo-layout-transparent .mdl-layout__drawer-button {
-  /* This background is dark, so we set text to white. Use 87% black instead if
-     your background is light. */
-  color: white;
-}
-
-/* Rules for sizing the icon. */
-.material-icons.md-18 {
-  font-size: 18px;
-}
-
-.material-icons.md-24 {
-  font-size: 24px;
-}
-
-.material-icons.md-36 {
-  font-size: 36px;
-}
-
-.material-icons.md-48 {
-  font-size: 48px;
-}
-
-/* table full width. */
-.fullwidth {
+#map {
+  margin-top: 1vh;
+  margin-left: 0.45vw;
+  height: 105% ;
   width: 100%;
 }
-
-/* height full */
-.map {
-  height: calc(100vh - 240px);
+.mdl-layout-title{
+  font-family: '微軟正黑體';
+  font-size: 185%;
 }
-
-.title {
-  font-family: "微軟正黑體";
-  text-align: center;
+#table1 {
+  width: 96%;
+  align:center;
 }
-
-/* H1 color */
-h1 {
-    color: white;
-    font-family: "微軟正黑體";
+#section1-1{
+  height: 89vh;
+  position:fixed;
 }
-
-/* view height 100% */
-.module {
-  height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
-  height: calc(var(--vh, 1vh) * 100);
-  margin: 0 auto;
-  max-width: 100%;
+#selectbar{
+   font-family: '微軟正黑體';
 }
-
-/* view height 100% with header */
-.module_head {
-  height: calc(100vh - 70px); /* Use vh as a fallback for browsers that do not support Custom Properties */
-  margin: 0 auto;
-  max-width: 100%;
+#network{
+  font-weight: bold;
+  font-family: '微軟正黑體';
+  color: yellow;
+  visibility: hidden;
 }
-
-/* element view height 25% */
-.module25 {
-  align-items: center;
-  display: flex;
-  height: 25%;
-  justify-content: center;
-}
-
-.section2 {
-  background-color: #FFFFFF !important
+.red{
+  background-color: #EEE8AA;
 }
