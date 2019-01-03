@@ -65,40 +65,40 @@ function doZoom(location) {
   });
 }
 
+
+// check clear or not
+var check;
+//connect to table
+var bridge = new Array(x);
+var feature = new Array(x);
+
 function plot(items) {
+
   //console.log(items);
   var lat, lng, coordinate;
-  var count = x;
-  var feature = new Array(count);
-  var stroke = new ol.style.Stroke({color: 'black', width: 1});
-  var fill = new ol.style.Fill({color: 'blue'});
-  var styles = {
-    'circle': new ol.style.Style({
-      image: new ol.style.RegularShape({
-        fill: fill,
-        stroke: stroke,
-        points: 3,
-        radius: 5,
-        angle: 0
-      })
-    })
-  }
+  var count = 0;
 
+  if (check == 1) {
+    //console.log(map.getLayers());
+    map.removeLayer(map.getLayers().getArray()[3]);
+    feature = new Array(count);
+    // console.log(map.getLayers().getArray()[3])
+    // console.log(feature);
+  }
 
   for (i in items) {
     lat = parseFloat(items[i]['latitude']);
     lng = parseFloat(items[i]['longitude']);
-    //console.log([lng,lat]);
-    //coordinate = ol.proj.transform([121,24.45], 'EPSG:4326', 'EPSG:3857');
+    bridge[count] = [lng, lat];
+    // console.log(bridge[count]);
+
     coordinate = ol.proj.fromLonLat([lng, lat]);
-
-
     feature[i] = new ol.Feature(new ol.geom.Point(coordinate));
-    feature[i].setStyle(styles['circle']);
-    // console.log(feature);
     feature = Object.keys(feature).map(function(key) {
       return feature[key];
     });
+
+    count = count + 1
   }
 
 
@@ -106,18 +106,120 @@ function plot(items) {
   var source = new ol.source.Vector({
     features: feature
   });
-
+  // l = map.getLayers().getArray()[2];
+  // l.setSource(source);
   var pointLayer = new ol.layer.Vector({
     source: source
   });
-
   map.addLayer(pointLayer);
+
+
+  check = 1;
+
 }
 
+//-----------------------------------
 
-//------------------------------------------------
+//var popup_check = 0;
+
+// function popup(geojson, school, coor) {
+//
+//   popup = new ol.Overlay({
+//     element: $("<div />").addClass('info').append( //put a table to element parameter
+//       $("<table />").addClass('table').append(
+//         $("<thead />").append(
+//           $("<tr />").append(
+//             $("<th />").html("類別")
+//           ).append(
+//             $("<th />").html("學校資訊")
+//           )
+//         )
+//       ).append(
+//         $("<tbody />").append(
+//           $("<tr />").append(
+//             $("<td />").html("學校")
+//           ).append(
+//             $("<td />").html(school)
+//           )
+//         ).append(
+//           $("<tr />").append(
+//             $("<td />").html("負責人")
+//           ).append(
+//             $("<td />").html(geojson["name"])
+//           )
+//         ).append(
+//           $("<tr />").append(
+//             $("<td />").html("電話")
+//           ).append(
+//             $("<td />").html(geojson["phone"])
+//           )
+//         ).append(
+//           $("<tr />").append(
+//             $("<td />").html("地址")
+//           ).append(
+//             $("<td />").html(geojson["address"])
+//           )
+//         )
+//       )
+//     )[0]
+//   });
+//   popup.setPosition(ol.proj.fromLonLat(coor));
+//   map.addOverlay(popup);
+//   popup_check = 1;
+// }
+
+
+//-----------------------------------
+function selectedrow() {
+  var rowcount = $('#table1 tbody tr').length;
+  var index, view, lat, lng, coor,
+    table = document.getElementById('table1');
+
+  //setView
+
+  for (var i = 0; i < rowcount; i++) {
+
+    table.rows[i].onclick = function() {
+
+      index = this.rowIndex;
+      // this.classList.toggle('selected');
+      console.log(index);
+      //console.log(feature[index-1]);
+      view = new ol.View({
+        center: feature[index - 1]["N"]["geometry"]["A"],
+        zoom: 16.8
+      });
+
+      map.setView(view);
+
+      // if (popup_check == 1) {
+      //   map.getOverlays().forEach(function(overlay) {
+      //     map.removeOverlay(overlay);
+      //   });
+      // }
+      // // connect to geojson
+      // for (i in geojson) {
+      //   lat = parseFloat(geojson[i]["latitude"]);
+      //   lng = parseFloat(geojson[i]["longitude"]);
+      //   coor = [lng, lat];
+      //
+      //   if (coor[0] == bridge[index - 1][0]) {
+          // console.log(geojson[i]);
+          // console.log(Object.keys(geojson)[index-1]);
+          //console.log(coor)
+          // popup(geojson[i], Object.keys(geojson)[index - 1], coor);
+
+        // }
+      // }
+
+    };
+  };
+};
+
 
 function func(location) {
+
+
   returnZoom();
   doPan(location);
   setTimeout(function() {
@@ -132,143 +234,143 @@ function changeCity(location) {
   var City = location;
 
 
-  if (City == '台北市') {
+  if (City == '臺北市') {
     //console.log(City);
+    poke(City);
     func(Taipei);
-    loadData();
     //loadJSON();
   }
 
   if (City == "基隆市") {
     //console.log(City);
+    poke(City);
     func(Keelung);
-    loadData();
   }
 
   if (City == "新北市") {
     //console.log(City);
+    poke(City);
     func(Newtaipei);
-    loadData();
   }
 
   if (City == "宜蘭縣") {
     //console.log(City);
+    poke(City);
     func(Yeeelan);
-    loadData();
   }
 
   if (City == "桃園縣") {
     //console.log(City);
+    poke(City);
     func(Taoyuan);
-    loadData();
   }
 
   if (City == "新竹市") {
     //console.log(City);
+    poke(City);
     func(Xinchu_city);
-    loadData();
   }
 
   if (City == "新竹縣") {
     //console.log(City);
+    poke(City);
     func(Xinchu);
-    loadData();
   }
 
   if (City == "苗栗縣") {
     //console.log(City);
+    poke(City);
     func(Miaoli);
-    loadData();
   }
 
-  if (City == "台中市") {
+  if (City == "臺中市") {
     //console.log(City);
+    poke(City);
     func(Taizhong);
-    loadData();
   }
 
   if (City == "彰化縣") {
     //console.log(City);
+    poke(City);
     func(Zhanghua);
-    loadData();
   }
 
   if (City == "南投縣") {
     //console.log(City);
+    poke(City);
     func(Nantou);
-    loadData();
   }
 
   if (City == "嘉義市") {
     //console.log(City);
+    poke(City);
     func(Jiayi_city);
-    loadData();
   }
 
   if (City == "嘉義縣") {
     //console.log(City);
+    poke(City);
     func(Jiayi);
-    loadData();
   }
 
   if (City == "雲林縣") {
     //console.log(City);
+    poke(City);
     func(Yunlin);
-    loadData();
   }
 
-  if (City == "台南市") {
+  if (City == "臺南市") {
     //console.log(City);
+    poke(City);
     func(Tainan);
-    loadData();
   }
 
   if (City == "高雄市") {
     //console.log(City);
+    poke(City);
     func(Kaoshong);
-    loadData();
   }
 
   if (City == "澎湖縣") {
     //console.log(City);
+    poke(City);
     func(Ponghu);
-    loadData();
   }
 
   if (City == "金門縣") {
     //console.log(City);
+    poke(City);
     func(Jingman);
-    loadData();
   }
 
   if (City == "屏東縣") {
     //console.log(City);
+    poke(City);
     func(Pingdon);
-    loadData();
   }
 
-  if (City == "台東縣") {
+  if (City == "臺東縣") {
     //console.log(City);
+    poke(City);
     func(Taidong);
-    loadData();
   }
 
   if (City == "花蓮縣") {
     //console.log(City);
+    poke(City);
     func(Hualian);
-    loadData();
   }
 
   if (City == "連江縣") {
     //console.log(City);
+    poke(City);
     func(LianJian);
-    loadData();
   }
 }
 
-//----------------------------------------------------
-//"pointermove"
 
+//-----------------------------------------------
+//"pointermove geojson"
 var select = new ol.interaction.Select({
   condition: ol.events.condition.pointerMove
 });
@@ -276,6 +378,17 @@ var select = new ol.interaction.Select({
 if (select !== null) {
   map.addInteraction(select);
 }
+
+function add_interaction() {
+  //console.log(123);
+  map.addInteraction(select);
+}
+
+//del_interaction
+function del_interaction() {
+  map.removeInteraction(select);
+}
+
 
 //----------------------------------------------------
 //"click"

@@ -18,6 +18,9 @@
 }
 #selectbar{
    font-family: '微軟正黑體';
+   margin-top: 10px;
+   margin-right: 30px;
+
 }
 #network{
   font-weight: bold;
@@ -27,4 +30,28 @@
 }
 .red{
   background-color: #EEE8AA;
+}
+/* ------------------------------- */
+/* for popup */
+
+.info{
+  background: #FFF;
+  color: #000;
+  border: 1px solid #f00;
+}
+.info > .table{
+  margin-bottom:0;
+}
+.info > .table th, .info > .table td{
+  padding: 4px;
+  line-height: 1.2;
+}
+.info > .table > thead > tr{
+  background: #d9edf7;
+}
+.info > .table > tbody > tr:nth-child(odd){
+  background: #dff0d8;
+}
+.info > .table > tbody > tr:nth-child(even){
+  background: #fcf8e3;
 }

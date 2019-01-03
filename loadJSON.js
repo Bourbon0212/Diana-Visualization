@@ -1,7 +1,9 @@
 
 var x = 0;
+var geojson;
 
 function loadJSON(items) {
+  geojson = items
   //console.log(json);
   //var items = JSON.parse(json);
   $("#table1 tbody tr").remove();
@@ -27,7 +29,7 @@ function loadJSON(items) {
               .append($('<td />').html(one))
               .append($('<td />').html(two))
               .append($('<td />').html(three))
-              .append($('<td />').append($('<button />').attr('onclick','show()').attr('id','Btn'+ x).addClass('tiny ui button').html('View'))));
+              .append($('<td />')));
 
       x = x+1;
     }
@@ -41,5 +43,8 @@ function loadJSON(items) {
       x = x+1;
     }
   }
+  selectedrow();
+  x = 0;
+
   //console.log(x);
 }

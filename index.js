@@ -27,12 +27,15 @@ var vector = new ol.layer.Vector({
       }),
     })
 
+    var pointLayer = new ol.layer.Vector({
+    });
+
 //---------------------------------------------------------
 //map init
 
 var map = new ol.Map({
   target: 'map',
-  layers: [raster, vector],
+  layers: [raster, vector, pointLayer],
   // stop zooming with scroll
   view: view
 });
@@ -45,11 +48,27 @@ function show() {
 };
 
 //---------------------------------------------------------
+// get event
 
+function event(items){
+
+  $("#sel").val(0);
+
+  $("#selectbar option").remove();
+
+
+  for (i in items){
+    //console.log(ass[i]["event"]);
+    var tr=$('#sel').append($('<option />').attr("value", items[i]["ass_id"]).html(items[i]["event"]));
+
+  }
+}
+
+
+//---------------------------------------------------------
 $(function() {
 
   // Failed to connect
-
   if (navigator.onLine) {
     console.log('online');
   } else {
@@ -57,6 +76,7 @@ $(function() {
     var network = document.getElementById("network");
     network.style.visibility = 'visible';
   }
-})
 
-//---------------------------------------------------------
+  // request for event
+  loadEvent();
+})
