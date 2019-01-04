@@ -120,8 +120,8 @@ function plot(items) {
 
 //-----------------------------------
 
-//var popup_check = 0;
-
+// var popup_check = 0;
+//
 // function popup(geojson, school, coor) {
 //
 //   popup = new ol.Overlay({
@@ -190,7 +190,7 @@ function selectedrow() {
         zoom: 16.8
       });
 
-      map.setView(view);
+      //map.setView(view);
 
       // if (popup_check == 1) {
       //   map.getOverlays().forEach(function(overlay) {
@@ -204,15 +204,13 @@ function selectedrow() {
       //   coor = [lng, lat];
       //
       //   if (coor[0] == bridge[index - 1][0]) {
-          // console.log(geojson[i]);
-          // console.log(Object.keys(geojson)[index-1]);
-          //console.log(coor)
-          // popup(geojson[i], Object.keys(geojson)[index - 1], coor);
-
-        // }
-      // }
-
-    };
+      //     console.log(geojson[i]);
+      //     console.log(Object.keys(geojson)[index-1]);
+      //     console.log(coor)
+      //     popup(geojson[i], Object.keys(geojson)[index - 1], coor);
+      //
+      //   }
+    }
   };
 };
 
