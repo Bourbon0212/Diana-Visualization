@@ -61,26 +61,26 @@
           <!--------------------------------------------------->
           <div class="eight wide column" id='section1-2'>
             <!-- dropdown -->
-              <!-- Simple Select -->
-              <div class="form-group" id='selectbar'>
-                  <select class="form-control" id="sel">
-                  </select>
-                </div>
+            <!-- Simple Select -->
+            <div class="form-group" id='selectbar'>
+              <select class="form-control" id="sel">
+              </select>
+            </div>
 
             <!-- Table -->
             <div class='row'>
-            <table class="mdl-data-table mdl-js-data-table mdl-data-table--unselectable mdl-shadow--2dp" id='table1' >
-              <thead>
-                <tr>
-                  <th class="mdl-data-table__cell--non-numeric">學校</th>
-                  <th>負責人</th>
-                  <th>電話</th>
-                  <th>填答與否</th>
-                  <th>詳細填答情形</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- <tr>
+              <table class="mdl-data-table mdl-js-data-table mdl-data-table--unselectable mdl-shadow--2dp" id='table1'>
+                <thead>
+                  <tr>
+                    <th class="mdl-data-table__cell--non-numeric">學校</th>
+                    <th>負責人</th>
+                    <th>電話</th>
+                    <th>填答與否</th>
+                    <th>詳細填答情形</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr>
                   <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
                   <td>25</td>
                   <td>$2.90</td>
@@ -98,9 +98,9 @@
                   <td>$2.35</td>
                   <td><button class="ui tiny button">One</button></td>
                 </tr> -->
-              </tbody>
-            </table>
-          </div>
+                </tbody>
+              </table>
+            </div>
 
 
             <select id='info' style='visibility:hidden'>
@@ -137,50 +137,49 @@
   <!----------------------------------------->
 
   <!-- 跳出來的Table -->
-  <div class='modal fade' id='dialog1' tabindex='-1' role='dialog' aria-labelledby='dialog1-title' aria-hidden='true'>
-    <div class='modal-dialog modal-dialog-centered' role='document'>
-      <div class='modal-content'>
-        <div class='modal-header'>
-          <table class="mdl-data-table mdl-js-data-table mdl-data-table--unselectable mdl-shadow--2dp" id='table1'>
-            <thead>
-              <tr>
-                <th class="mdl-data-table__cell--non-numeric">Material</th>
-                <th>Quantity</th>
-                <th>Unit price</th>
-                <th>Btn</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr id='test'>
-                <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
-                <td>25</td>
-                <td>$2.90</td>
-                <td><button class="ui tiny button">One</button></td>
-              </tr>
-              <tr>
-                <td class="mdl-data-table__cell--non-numeric">Plywood (Birch)</td>
-                <td>50</td>
-                <td>$1.25</td>
-                <td><button class="ui tiny button">One</button></td>
-              </tr>
-              <tr>
-                <td class="mdl-data-table__cell--non-numeric">Laminate (Gold on Blue)</td>
-                <td>10</td>
-                <td>$2.35</td>
-                <td><button class="ui tiny button">One</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  <div class="modal fade bd-example-modal-lg" id='dialog1' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class='modal-header'>
+        <table class="ui celled table" id="table2">
+          <thead>
+            <tr>
+              <th class="center aligned">問卷內容</th>
+              <th class="center aligned">所屬類別</th>
+              <th class="center aligned">待改進內容</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Name">James</td>
+              <td data-label="Age">24</td>
+              <td data-label="Job">Engineer</td>
+            </tr>
+            <tr>
+              <td data-label="Name">Jill</td>
+              <td data-label="Age">26</td>
+              <td data-label="Job">Engineer</td>
+            </tr>
+            <tr>
+              <td data-label="Name">Elyse</td>
+              <td data-label="Age">24</td>
+              <td data-label="Job">Designer</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
+</div>
+
+
 
   <!----------------------------------------->
 
   <script src='index.js'></script>
   <script src='loadJSON.js'></script>
   <script src='map_function.js'></script>
+  <script src='detail.js'></script>
   <script src='request.js'></script>
 
 </body>

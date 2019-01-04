@@ -1,12 +1,14 @@
 
 var x = 0;
 var geojson;
-
+var userid = new Object;
 function loadJSON(items) {
+
   geojson = items
   //console.log(json);
   //var items = JSON.parse(json);
   $("#table1 tbody tr").remove();
+  $("#table2 tbody tr").remove()
   //-------------------------------------
   // insert into table1
 
@@ -25,6 +27,8 @@ function loadJSON(items) {
     }
 
     if(three == '未填答'){
+      // userid[i] = items[i]["userid"];
+
       var tr=$('#table1').append($('<tr />').addClass('red').append($('<td />').addClass('mdl-data-table__cell--non-numeric').html(i))
               .append($('<td />').html(one))
               .append($('<td />').html(two))
@@ -34,6 +38,9 @@ function loadJSON(items) {
       x = x+1;
     }
     else{
+      userid[i] = items[i]["userid"];
+      loadDetail(i);
+
       var tr=$('#table1').append($('<tr />').append($('<td />').addClass('mdl-data-table__cell--non-numeric').html(i))
               .append($('<td />').html(one))
               .append($('<td />').html(two))
@@ -43,6 +50,7 @@ function loadJSON(items) {
       x = x+1;
     }
   }
+  //console.log(userid[i]);
   selectedrow();
   x = 0;
 
