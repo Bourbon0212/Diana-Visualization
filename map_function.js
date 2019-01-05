@@ -120,8 +120,8 @@ function plot(items) {
 
 //-----------------------------------
 
-// var popup_check = 0;
-//
+var popup_check = 0;
+
 // function popup(geojson, school, coor) {
 //
 //   popup = new ol.Overlay({
@@ -190,7 +190,7 @@ function selectedrow() {
         zoom: 16.8
       });
 
-      //map.setView(view);
+      map.setView(view);
 
       // if (popup_check == 1) {
       //   map.getOverlays().forEach(function(overlay) {
@@ -210,6 +210,7 @@ function selectedrow() {
       //     popup(geojson[i], Object.keys(geojson)[index - 1], coor);
       //
       //   }
+      // }
     }
   };
 };
@@ -230,142 +231,20 @@ function func(location) {
 function changeCity(location) {
 
   var City = location;
+  var put = [Taipei,Keelung,Newtaipei,Yeeelan,Taoyuan,Xinchu_city,Xinchu,
+                Miaoli,Taizhong,Zhanghua,Nantou,Jiayi_city,Jiayi,Yunlin,
+                Tainan,Kaoshong,Ponghu,Jingman,Pingdon,Taidong,Hualian,LianJian];
+  var chinese = ['臺北市',"基隆市","新北市","宜蘭縣","桃園縣","新竹市","新竹縣",
+                "苗栗縣","臺中市","彰化縣","南投縣","嘉義市","嘉義縣","雲林縣",
+                "臺南市","高雄市","澎湖縣","金門縣","屏東縣","臺東縣","花蓮縣","連江縣"];
 
-
-  if (City == '臺北市') {
-    //console.log(City);
-    poke(City);
-    func(Taipei);
-    //loadJSON();
-  }
-
-  if (City == "基隆市") {
-    //console.log(City);
-    poke(City);
-    func(Keelung);
-  }
-
-  if (City == "新北市") {
-    //console.log(City);
-    poke(City);
-    func(Newtaipei);
-  }
-
-  if (City == "宜蘭縣") {
-    //console.log(City);
-    poke(City);
-    func(Yeeelan);
-  }
-
-  if (City == "桃園縣") {
-    //console.log(City);
-    poke(City);
-    func(Taoyuan);
-  }
-
-  if (City == "新竹市") {
-    //console.log(City);
-    poke(City);
-    func(Xinchu_city);
-  }
-
-  if (City == "新竹縣") {
-    //console.log(City);
-    poke(City);
-    func(Xinchu);
-  }
-
-  if (City == "苗栗縣") {
-    //console.log(City);
-    poke(City);
-    func(Miaoli);
-  }
-
-  if (City == "臺中市") {
-    //console.log(City);
-    poke(City);
-    func(Taizhong);
-  }
-
-  if (City == "彰化縣") {
-    //console.log(City);
-    poke(City);
-    func(Zhanghua);
-  }
-
-  if (City == "南投縣") {
-    //console.log(City);
-    poke(City);
-    func(Nantou);
-  }
-
-  if (City == "嘉義市") {
-    //console.log(City);
-    poke(City);
-    func(Jiayi_city);
-  }
-
-  if (City == "嘉義縣") {
-    //console.log(City);
-    poke(City);
-    func(Jiayi);
-  }
-
-  if (City == "雲林縣") {
-    //console.log(City);
-    poke(City);
-    func(Yunlin);
-  }
-
-  if (City == "臺南市") {
-    //console.log(City);
-    poke(City);
-    func(Tainan);
-  }
-
-  if (City == "高雄市") {
-    //console.log(City);
-    poke(City);
-    func(Kaoshong);
-  }
-
-  if (City == "澎湖縣") {
-    //console.log(City);
-    poke(City);
-    func(Ponghu);
-  }
-
-  if (City == "金門縣") {
-    //console.log(City);
-    poke(City);
-    func(Jingman);
-  }
-
-  if (City == "屏東縣") {
-    //console.log(City);
-    poke(City);
-    func(Pingdon);
-  }
-
-  if (City == "臺東縣") {
-    //console.log(City);
-    poke(City);
-    func(Taidong);
-  }
-
-  if (City == "花蓮縣") {
-    //console.log(City);
-    poke(City);
-    func(Hualian);
-  }
-
-  if (City == "連江縣") {
-    //console.log(City);
-    poke(City);
-    func(LianJian);
+  for(i=0; i<22; i++){
+    if (City == chinese[i]) {
+      poke(City);
+      func(put[i]);
+    }
   }
 }
-
 
 //-----------------------------------------------
 //"pointermove geojson"

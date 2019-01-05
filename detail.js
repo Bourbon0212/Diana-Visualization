@@ -3,7 +3,7 @@
 
 
 function detail (items) {
-  console.log(items);
+  //console.log(items);
   for(i in items){
     var tr=$('#table2')
       .append($('<tr />')
