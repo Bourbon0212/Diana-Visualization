@@ -23,6 +23,7 @@ var Hualian = ol.proj.fromLonLat([121.411609, 23.815980])
 var LianJian = ol.proj.fromLonLat([119.953364, 26.180745])
 
 
+// 移動到 選擇的縣市
 function doPan(location) {
 
   view.animate({
@@ -32,15 +33,7 @@ function doPan(location) {
 
 }
 
-function returnZoom() {
-
-  view.animate({
-    zoom: 7.5,
-    duration: 900
-  });
-
-}
-
+// Zoom in 到 選擇的縣市
 function doZoom(location) {
   var Zoom;
 
@@ -56,6 +49,10 @@ function doZoom(location) {
     Zoom = 9.7;
   } else if (location == Hualian) {
     Zoom = 9.3;
+  } else if (location == "point") {
+    Zoom = 16.8
+  } else if (location == "pointToPoint") {
+    Zoom = 13.8
   } else {
     Zoom = 10.2;
   }
@@ -63,6 +60,29 @@ function doZoom(location) {
     zoom: Zoom,
     duration: 1500
   });
+}
+
+function moveCity(location) {
+
+  doPan(location);
+  setTimeout(function() {
+    doZoom(location);
+  }, 1300);
+
+}
+
+function movePoint(center, zoom, done) {
+  if (done == "pointToPoint") {
+    doZoom(done);
+  }
+
+  setTimeout(function() {
+    doPan(center);
+  }, 700);
+  setTimeout(function() {
+    doZoom(zoom);
+  }, 1500);
+
 }
 
 
@@ -74,16 +94,11 @@ var feature = new Array(x);
 
 function plot(items) {
 
-  //console.log(items);
   var lat, lng, coordinate;
   var count = 0;
 
   if (check == 1) {
-    //console.log(map.getLayers());
-    map.removeLayer(map.getLayers().getArray()[3]);
     feature = new Array(count);
-    // console.log(map.getLayers().getArray()[3])
-    // console.log(feature);
   }
 
   for (i in items) {
@@ -98,7 +113,7 @@ function plot(items) {
       return feature[key];
     });
 
-    count = count + 1
+    count = count + 1;
   }
 
 
@@ -111,68 +126,69 @@ function plot(items) {
   var pointLayer = new ol.layer.Vector({
     source: source
   });
-  map.addLayer(pointLayer);
+  // console.log(map.getLayers().getArray()[2])
+  map.getLayers().getArray()[2] = pointLayer;
 
-
+  // console.log(map.getLayers());
   check = 1;
-
 }
 
 //-----------------------------------
 
 var popup_check = 0;
 
-// function popup(geojson, school, coor) {
-//
-//   popup = new ol.Overlay({
-//     element: $("<div />").addClass('info').append( //put a table to element parameter
-//       $("<table />").addClass('table').append(
-//         $("<thead />").append(
-//           $("<tr />").append(
-//             $("<th />").html("類別")
-//           ).append(
-//             $("<th />").html("學校資訊")
-//           )
-//         )
-//       ).append(
-//         $("<tbody />").append(
-//           $("<tr />").append(
-//             $("<td />").html("學校")
-//           ).append(
-//             $("<td />").html(school)
-//           )
-//         ).append(
-//           $("<tr />").append(
-//             $("<td />").html("負責人")
-//           ).append(
-//             $("<td />").html(geojson["name"])
-//           )
-//         ).append(
-//           $("<tr />").append(
-//             $("<td />").html("電話")
-//           ).append(
-//             $("<td />").html(geojson["phone"])
-//           )
-//         ).append(
-//           $("<tr />").append(
-//             $("<td />").html("地址")
-//           ).append(
-//             $("<td />").html(geojson["address"])
-//           )
-//         )
-//       )
-//     )[0]
-//   });
-//   popup.setPosition(ol.proj.fromLonLat(coor));
-//   map.addOverlay(popup);
-//   popup_check = 1;
-// }
+function popupFunc(geojson, school, coor) {
+
+  popup = new ol.Overlay({
+    element: $("<div />").addClass('info').append( //put a table to element parameter
+      $("<table />").addClass('mdl-data-table mdl-js-data-table mdl-data-table--unselectable mdl-shadow--2dp').append(
+        $("<thead />").append(
+          $("<tr />").append(
+            $("<th />").addClass("mdl-data-table__cell--non-numeric").html("類別")
+          ).append(
+            $("<th />").html("學校資訊")
+          )
+        )
+      ).append(
+        $("<tbody />").append(
+          $("<tr />").append(
+            $("<td />").html("學校")
+          ).append(
+            $("<td />").html(school)
+          )
+        ).append(
+          $("<tr />").append(
+            $("<td />").html("負責人")
+          ).append(
+            $("<td />").html(geojson["name"])
+          )
+        ).append(
+          $("<tr />").append(
+            $("<td />").html("電話")
+          ).append(
+            $("<td />").html(geojson["phone"])
+          )
+        ).append(
+          $("<tr />").append(
+            $("<td />").html("地址")
+          ).append(
+            $("<td />").html(geojson["address"])
+          )
+        )
+      )
+    )[0]
+  });
+  popup.setPosition(ol.proj.fromLonLat(coor));
+  map.addOverlay(popup);
+  // console.log(map.getLayers());
+  popup_check = 1;
+}
 
 
 //-----------------------------------
 function selectedrow() {
   var rowcount = $('#table1 tbody tr').length;
-  var index, view, lat, lng, coor,
+  var index, view, lat, lng, coor, center, zoom,
     table = document.getElementById('table1');
 
   //setView
@@ -185,63 +201,57 @@ function selectedrow() {
       // this.classList.toggle('selected');
       console.log(index);
       //console.log(feature[index-1]);
-      view = new ol.View({
-        center: feature[index - 1]["N"]["geometry"]["A"],
-        zoom: 16.8
-      });
 
-      map.setView(view);
+      center = feature[index - 1]["N"]["geometry"]["A"];
+      zoom = "point";
 
-      // if (popup_check == 1) {
-      //   map.getOverlays().forEach(function(overlay) {
-      //     map.removeOverlay(overlay);
-      //   });
-      // }
-      // // connect to geojson
-      // for (i in geojson) {
-      //   lat = parseFloat(geojson[i]["latitude"]);
-      //   lng = parseFloat(geojson[i]["longitude"]);
-      //   coor = [lng, lat];
-      //
-      //   if (coor[0] == bridge[index - 1][0]) {
-      //     console.log(geojson[i]);
-      //     console.log(Object.keys(geojson)[index-1]);
-      //     console.log(coor)
-      //     popup(geojson[i], Object.keys(geojson)[index - 1], coor);
-      //
-      //   }
-      // }
+      if (map.getView().getZoom() == 16.8) {
+        movePoint(center, zoom, 'pointToPoint');
+      } else {
+        movePoint(center, zoom, 'firstTime');
+      }
+
+
+      if (popup_check == 1) {
+        map.removeOverlay(popup);
+      }
+
+      // connect to geojson
+      for (i in geojson) {
+        lat = parseFloat(geojson[i]["latitude"]);
+        lng = parseFloat(geojson[i]["longitude"]);
+        coor = [lng, lat];
+
+        if (coor[0] == bridge[index - 1][0]) {
+          // console.log(geojson[i]);
+          // console.log(Object.keys(geojson)[index-1]);
+          // console.log(coor)
+          popupFunc(geojson[i], Object.keys(geojson)[index - 1], coor);
+
+        }
+      }
     }
   };
 };
-
-
-function func(location) {
-
-
-  returnZoom();
-  doPan(location);
-  setTimeout(function() {
-    doZoom(location);
-  }, 1300);
-}
 
 
 //Choose City change District
 function changeCity(location) {
 
   var City = location;
-  var put = [Taipei,Keelung,Newtaipei,Yeeelan,Taoyuan,Xinchu_city,Xinchu,
-                Miaoli,Taizhong,Zhanghua,Nantou,Jiayi_city,Jiayi,Yunlin,
-                Tainan,Kaoshong,Ponghu,Jingman,Pingdon,Taidong,Hualian,LianJian];
-  var chinese = ['臺北市',"基隆市","新北市","宜蘭縣","桃園縣","新竹市","新竹縣",
-                "苗栗縣","臺中市","彰化縣","南投縣","嘉義市","嘉義縣","雲林縣",
-                "臺南市","高雄市","澎湖縣","金門縣","屏東縣","臺東縣","花蓮縣","連江縣"];
+  var put = [Taipei, Keelung, Newtaipei, Yeeelan, Taoyuan, Xinchu_city, Xinchu,
+    Miaoli, Taizhong, Zhanghua, Nantou, Jiayi_city, Jiayi, Yunlin,
+    Tainan, Kaoshong, Ponghu, Jingman, Pingdon, Taidong, Hualian, LianJian
+  ];
+  var chinese = ['臺北市', "基隆市", "新北市", "宜蘭縣", "桃園縣", "新竹市", "新竹縣",
+    "苗栗縣", "臺中市", "彰化縣", "南投縣", "嘉義市", "嘉義縣", "雲林縣",
+    "臺南市", "高雄市", "澎湖縣", "金門縣", "屏東縣", "臺東縣", "花蓮縣", "連江縣"
+  ];
 
-  for(i=0; i<22; i++){
+  for (i = 0; i < 22; i++) {
     if (City == chinese[i]) {
       poke(City);
-      func(put[i]);
+      moveCity(put[i]);
     }
   }
 }
@@ -249,7 +259,16 @@ function changeCity(location) {
 //-----------------------------------------------
 //"pointermove geojson"
 var select = new ol.interaction.Select({
-  condition: ol.events.condition.pointerMove
+  condition: ol.events.condition.pointerMove,
+  style: new ol.style.Style({
+    stroke: new ol.style.Stroke({
+      width: 3,
+      color: '#33CCFF'
+    }),
+    fill: new ol.style.Fill({
+      color: [215, 40, 0, 0]
+    })
+  })
 });
 
 if (select !== null) {
@@ -269,7 +288,7 @@ function del_interaction() {
 
 //----------------------------------------------------
 //"click"
-
+var featureName;
 var displayFeatureInfo = function(pixel) {
 
   var feature = map.forEachFeatureAtPixel(pixel, function(feature) {
@@ -278,14 +297,22 @@ var displayFeatureInfo = function(pixel) {
 
   if (feature) {
     //console.log(feature.get('name'));
-    changeCity(feature.get('name'));
+    featureName = feature.get('name');
+    changeCity(featureName);
   }
 };
 
 map.on('singleclick', function(evt) {
+  //change city delete popup
+  if (popup_check == 1) {
+    map.removeOverlay(popup);
+  }
+
+
   if (evt.dragging) {
     return;
   }
+  //console.log(evt.originalEvent);
   var pixel = map.getEventPixel(evt.originalEvent);
   displayFeatureInfo(pixel);
 });

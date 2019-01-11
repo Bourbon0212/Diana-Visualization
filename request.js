@@ -16,7 +16,6 @@ function loadEvent() { //load data via ajax
 var ass_id;
 function poke(county) {
 
-
   if ($('#sel').val()) {
     //console.log($('#sel').val());
     ass_id = $('#sel').val();
@@ -32,7 +31,7 @@ function poke(county) {
     url: url_fetch,
     dataType: "json",
     success: function(items) {
-      //console.log(123);
+      //console.log(items);
       loadJSON(items);
       plot(items);
     }
@@ -40,16 +39,15 @@ function poke(county) {
 }
 
 
+
 function loadDetail(school) {
   var url_detail = "https://pmdiana.hcilab.katrina.tw/detail?userid=" + userid[school] + "&assessment_id=" + ass_id;
-  //console.log(url_poke);
 
   $.ajax({
     url: url_detail,
     dataType: "json",
     success: function(items) {
       //console.log(url_detail);
-      // loadJSON(items);
       detail(items);
     }
   });

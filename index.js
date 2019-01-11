@@ -27,8 +27,12 @@ var vector = new ol.layer.Vector({
       }),
     })
 
-    var pointLayer = new ol.layer.Vector({
-    });
+var pointLayer = new ol.layer.Vector({
+});
+
+var popup = new ol.Overlay({
+  element: document.getElementById('popup')
+});
 
 //---------------------------------------------------------
 //map init
