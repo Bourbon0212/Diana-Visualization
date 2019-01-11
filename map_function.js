@@ -186,6 +186,8 @@ function popupFunc(geojson, school, coor) {
 
 
 //-----------------------------------
+var lastSelect = 0;
+
 function selectedrow() {
   var rowcount = $('#table1 tbody tr').length;
   var index, view, lat, lng, coor, center, zoom,
@@ -204,13 +206,15 @@ function selectedrow() {
 
       center = feature[index - 1]["N"]["geometry"]["A"];
       zoom = "point";
-
-      if (map.getView().getZoom() == 16.8) {
-        movePoint(center, zoom, 'pointToPoint');
-      } else {
-        movePoint(center, zoom, 'firstTime');
+      if (lastSelect != index) {
+        if (map.getView().getZoom() == 16.8) {
+          movePoint(center, zoom, 'pointToPoint');
+        } else {
+          movePoint(center, zoom, 'firstTime');
+        }
       }
 
+      lastSelect = index;
 
       if (popup_check == 1) {
         map.removeOverlay(popup);
@@ -307,7 +311,6 @@ map.on('singleclick', function(evt) {
   if (popup_check == 1) {
     map.removeOverlay(popup);
   }
-
 
   if (evt.dragging) {
     return;
