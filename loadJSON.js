@@ -2,6 +2,8 @@
 var x = 0;
 var geojson;
 var userid = new Object;
+
+
 function loadJSON(items) {
 
   geojson = items
@@ -27,7 +29,7 @@ function loadJSON(items) {
     }
 
     if(three == '未填答'){
-      // userid[i] = items[i]["userid"];
+      userid[i] = items[i]["userid"];
 
       var tr=$('#table1').append($('<tr />').addClass('red9').append($('<td />').addClass('mdl-data-table__cell--non-numeric').html(i))
               .append($('<td />').html(one))
@@ -39,22 +41,22 @@ function loadJSON(items) {
     }
     else{
       userid[i] = items[i]["userid"];
-      loadDetail(i);
+      // loadDetail(i);
       severity = draw(items[i]["severity"]);
-      // console.log(severity);
+
 
       var tr=$('#table1').append($('<tr />').addClass(severity).append($('<td />').addClass('mdl-data-table__cell--non-numeric').html(i))
               .append($('<td />').html(one))
               .append($('<td />').html(two))
               .append($('<td />').html(three))
-              .append($('<td />').append($('<button />').attr('onclick','show()').attr('id','Btn'+ x).addClass('tiny ui button').html('View'))));
+              .append($('<td />').append($('<button />').attr('onclick','show(); loadDetail('+"'"+i+"'"+')').attr('id','Btn'+ x).addClass('tiny ui button').html('View'))));
 
       x = x+1;
+      // detCount = detCount + 1;
     }
   }
-  // console.log(123);
+
   selectedrow();
   x = 0;
 
-  //console.log(x);
 }

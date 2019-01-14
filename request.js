@@ -39,16 +39,16 @@ function poke(county) {
   });
 }
 
-
-
 function loadDetail(school) {
+  // console.log(userid);
+
   var url_detail = "https://pmdiana.hcilab.katrina.tw/detail?userid=" + userid[school] + "&assessment_id=" + ass_id;
 
   $.ajax({
     url: url_detail,
     dataType: "json",
     success: function(items) {
-      //console.log(url_detail);
+      // console.log(items);
       detail(items);
     }
   });
