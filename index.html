@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!--getmdl-select-->
-  <link rel="stylesheet" href="node_modules/getmdl-select/getmdl-select.min.css">
-  <script defer src="node_modules/getmdl-select/getmdl-select.min.js"></script>
+  <!-- <link rel="stylesheet" href="node_modules/getmdl-select/getmdl-select.min.css">
+  <script defer src="node_modules/getmdl-select/getmdl-select.min.js"></script> -->
 
   <!-- import semantic -->
   <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
@@ -52,18 +52,15 @@
       <div class="page-content">
         <!-- Your content goes here -->
 
-        <div class="ui grid">
-          <!--------------------------------------------------->
-          <div class="eight wide column"></div>
-          <!--------------------------------------------------->
-          <div class="eight wide column" id='section1-1'>
+          <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet" id='section1-1'>
             <!-- map -->
             <div id="map" onmouseleave="del_interaction()" onmouseover="add_interaction()"></div>
             <!-- Popup -->
             <div id="popup"></div>
           </div>
           <!--------------------------------------------------->
-          <div class="eight wide column" id='section1-2'>
+          <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet" id='section1-2'>
             <!-- dropdown -->
             <!-- Simple Select -->
             <div class="form-group" id='selectbar'>
@@ -72,7 +69,7 @@
             </div>
 
             <!-- Table -->
-            <div class='row'>
+            <!-- <div class='row'> -->
               <table class="mdl-data-table mdl-js-data-table mdl-data-table--unselectable mdl-shadow--2dp" id='table1'>
                 <thead>
                   <tr>
@@ -86,7 +83,7 @@
                 <tbody>
                 </tbody>
               </table>
-            </div>
+            <!-- </div> -->
 
           </div>
         </div>
