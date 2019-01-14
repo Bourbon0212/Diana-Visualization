@@ -4,6 +4,7 @@
 
 function detail (items) {
   //console.log(items);
+  $("#table2 tbody tr").remove();
   for(i in items){
     var tr=$('#table2')
       .append($('<tr />')
