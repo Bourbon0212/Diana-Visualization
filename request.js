@@ -19,9 +19,10 @@ function poke(county) {
   if ($('#sel').val()) {
     //console.log($('#sel').val());
     ass_id = $('#sel').val();
-  } else {
-    ass_id = 2;
   }
+  // else {
+  //   ass_id = 2;
+  // }
 
   var url_fetch = "https://pmdiana.hcilab.katrina.tw/fetch?county=" + county + "&assessment_id=" + ass_id;
 

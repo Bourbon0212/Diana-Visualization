@@ -29,7 +29,7 @@ function loadJSON(items) {
     if(three == '未填答'){
       // userid[i] = items[i]["userid"];
 
-      var tr=$('#table1').append($('<tr />').addClass('red').append($('<td />').addClass('mdl-data-table__cell--non-numeric').html(i))
+      var tr=$('#table1').append($('<tr />').addClass('red9').append($('<td />').addClass('mdl-data-table__cell--non-numeric').html(i))
               .append($('<td />').html(one))
               .append($('<td />').html(two))
               .append($('<td />').html(three))
@@ -40,8 +40,10 @@ function loadJSON(items) {
     else{
       userid[i] = items[i]["userid"];
       loadDetail(i);
+      severity = draw(items[i]["severity"]);
+      // console.log(severity);
 
-      var tr=$('#table1').append($('<tr />').append($('<td />').addClass('mdl-data-table__cell--non-numeric').html(i))
+      var tr=$('#table1').append($('<tr />').addClass(severity).append($('<td />').addClass('mdl-data-table__cell--non-numeric').html(i))
               .append($('<td />').html(one))
               .append($('<td />').html(two))
               .append($('<td />').html(three))
