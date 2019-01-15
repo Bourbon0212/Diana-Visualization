@@ -33,6 +33,8 @@ function poke(county) {
     dataType: "json",
     success: function(items) {
       //console.log(items);
+      // sort(items);
+      items = sort(items);
       loadJSON(items);
       plot(items);
     }
